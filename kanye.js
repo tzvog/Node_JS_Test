@@ -7,6 +7,7 @@ function get_kanye_qoute(callback)
 {
   https.get(kanye, (res) => {
     res.on('data', (d) => {
+      // parses the data into a json and puts the values into our function 
       json_parsed_object = JSON.parse(d); 
       callback(json_parsed_object[wanted_value]);
     });

@@ -6,32 +6,44 @@
 
 const express = require('express');
 const app = express(); 
+const Enum = require('enum');
+
 const kanye = require('./kanye.js');
 const chuck = require('./chuck.js');
-const cutoff_year = 2000; 
+const name_parse = require('./nameParse.js'); 
 
+var request = {"requests": 0, "distribution": []};  
+
+
+const cutoff_year = 2000; 
+// const ret_type = new Enum({'A': 'chuck-norris-joke', 'B': 'kanye-quote', 'C': 'name-sum'});
 
 
 app.get('/api/surprise' ,(req, res) => {
 
-    const birthyear = parseInt(req.query.birth_year); 
+    const birth_year = parseInt(req.query.birth_year); 
 
-    if(birthyear > cutoff_year)
+    name_parse(req.query.name, (handle_res) =>
     {
-        kanye((handle_res) =>
-        {
-            res.status(200).json({type: true, result: handle_res});
-        }
-        ); 
-    }
-    else
-    {
-        chuck((handle_res) =>
-        {
-            res.status(200).json({type: true, result: handle_res});
-        }
-        ); 
-    }
+        res.status(200).json({type: true, result: handle_res});
+    });
+
+    // if(birth_year > cutoff_year)
+    // {
+        // kanye((handle_res) =>
+        // {
+        //     res.status(200).json({type: toString(ret_type.B), result: handle_res});
+        // }
+        // ); 
+    // }
+    // else
+    // {
+    //     chuck((handle_res) =>
+    //     {
+    //         res.status(200).json({type: toString(ret_type.B), result: handle_res});
+    //     }
+    //     ); 
+    // }
     
 
     // res.status(200).send(handle_res); 
