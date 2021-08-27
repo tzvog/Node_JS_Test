@@ -18,15 +18,24 @@ var request = {"requests": 0, "distribution": []};
 const cutoff_year = 2000; 
 // const ret_type = new Enum({'A': 'chuck-norris-joke', 'B': 'kanye-quote', 'C': 'name-sum'});
 
-
 app.get('/api/surprise' ,(req, res) => {
 
     const birth_year = parseInt(req.query.birth_year); 
 
-    name_parse(req.query.name, (handle_res) =>
+    console.log(Object.keys(req.query).length); 
+
+    function return_to_user(handle_res)
     {
         res.status(200).json({type: true, result: handle_res});
-    });
+    }
+
+    // name_parse(req.query.name, (handle_res) =>
+    // {
+    //     res.status(200).json({type: true, result: handle_res});
+    // });
+
+    name_parse(req.query.name, return_to_user);
+
 
     // if(birth_year > cutoff_year)
     // {
