@@ -1,17 +1,14 @@
 const https = require('https');
-const chuck = 'https://api.chucknorris.io/jokes/random'
 const kanye = 'https://api.kanye.rest'
-const quote = 'quote'
+const wanted_value = 'quote'
 
+// a function that will recive a function and run the kanye quote on it
 function get_kanye_qoute(callback)
 {
   https.get(kanye, (res) => {
     res.on('data', (d) => {
-      // console.log(typeof(callback)); 
       json_parsed_object = JSON.parse(d); 
-      callback(json_parsed_object[quote]);
-      // process.stdout.write(json_parsed_object[quote]); 
-      // quotetttt =  json_parsed_object[quote]; 
+      callback(json_parsed_object[wanted_value]);
     });
   
   }).on('error', (e) => {

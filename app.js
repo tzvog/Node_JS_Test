@@ -7,6 +7,8 @@
 const express = require('express');
 const app = express(); 
 const kanye = require('./kanye.js');
+const chuck = require('./chuck.js');
+const cutoff_year = 2000; 
 
 
 
@@ -14,18 +16,26 @@ app.get('/api/surprise' ,(req, res) => {
 
     const birthyear = parseInt(req.query.birth_year); 
 
-    if(birthyear > 1900)
+    if(birthyear > cutoff_year)
     {
         kanye((handle_res) =>
         {
-            // res.status(200).send(handle_res); 
-            // res.status(101).json({type: true, result: handle_res});
+            res.status(200).json({type: true, result: handle_res});
+        }
+        ); 
+    }
+    else
+    {
+        chuck((handle_res) =>
+        {
             res.status(200).json({type: true, result: handle_res});
         }
         ); 
     }
     
 
+    // res.status(200).send(handle_res); 
+    // res.status(101).json({type: true, result: handle_res});
     // kanye((handle_res) =>
     //  { res.status(443).send(handle_res); }
     // ); 
