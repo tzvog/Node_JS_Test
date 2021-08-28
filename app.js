@@ -1,9 +1,3 @@
-// const http = require('http');
-// const url = require('url');
-
-// const server = http.createServer(); 
-// server.listen(3000); 
-
 const express = require('express');
 const app = express(); 
 const Enum = require('enum');
@@ -16,15 +10,48 @@ var request = {"requests": 0, "distribution": []};
 
 
 const cutoff_year = 2000; 
+const bad_paramets_message = "bad parameters try again"
 // const ret_type = new Enum({'A': 'chuck-norris-joke', 'B': 'kanye-quote', 'C': 'name-sum'});
 
 app.get('/api/surprise' ,(req, res) => {
 
+    function success(handle_res)
+    {
+        res.status(200).json({type: true, result: handle_res});
+    }
+
+    function fail()
+    {
+        res.status(400).json({type: true, result: handle_res});
+    }
+
+    // checks if we the right amount of parameters and correct ones
+    if ( typeof (req.query.birth_year) === 'undefined' || 
+        typeof (req.query.name) === 'undefined' || 
+        Object.keys(req.query).length == 2)
+    {
+        res.status(400).send(bad_paramets_message);
+        return; 
+    }
+
+    
+
+    if (Object.keys(req.query).length == 2)
+    {
+        res.status(400).json({type: true, result: "vog"});
+        return; 
+    } 
+
     const birth_year = parseInt(req.query.birth_year); 
 
-    console.log(Object.keys(req.query).length); 
+    // if(birth_year === 1980)
+    // {
+    //     console.log(Object.keys(req.query).length); 
+    //     return; 
+    // }
+    
 
-    function return_to_user(handle_res)
+    function success(handle_res)
     {
         res.status(200).json({type: true, result: handle_res});
     }
@@ -34,7 +61,7 @@ app.get('/api/surprise' ,(req, res) => {
     //     res.status(200).json({type: true, result: handle_res});
     // });
 
-    name_parse(req.query.name, return_to_user);
+    name_parse(req.query.name, success);
 
 
     // if(birth_year > cutoff_year)
