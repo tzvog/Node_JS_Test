@@ -1,17 +1,22 @@
+// imported libraries 
 const express = require('express');
 const app = express(); 
 const Enum = require('enum');
 
+// local files
 const kanye = require('./kanye.js');
 const chuck = require('./chuck.js');
 const name_parse = require('./nameParse.js'); 
+const responses = require('./response'); 
 
-var request = {"requests": 0, "distribution": []};  
-
-
+// const variables 
 const cutoff_year = 2000; 
-const bad_paramets_message = "bad parameters try again"
-// const ret_type = new Enum({'A': 'chuck-norris-joke', 'B': 'kanye-quote', 'C': 'name-sum'});
+const ret_type = new Enum({1: 'chuck-norris-joke', 2: 'kanye-quote', 3: 'name-sum'});
+
+
+// local varriables
+var request = {"requests": 0, "distribution": []};
+
 
 app.get('/api/surprise' ,(req, res) => {
 
@@ -20,40 +25,21 @@ app.get('/api/surprise' ,(req, res) => {
         res.status(200).json({type: true, result: handle_res});
     }
 
-    function fail()
-    {
-        res.status(400).json({type: true, result: handle_res});
-    }
-
     // checks if we the right amount of parameters and correct ones
     if ( typeof (req.query.birth_year) === 'undefined' || 
         typeof (req.query.name) === 'undefined' || 
-        Object.keys(req.query).length == 2)
+        Object.keys(req.query).length != 2)
     {
-        res.status(400).send(bad_paramets_message);
+        responses.fail(res); 
         return; 
     }
 
-    
-
-    if (Object.keys(req.query).length == 2)
-    {
-        res.status(400).json({type: true, result: "vog"});
-        return; 
-    } 
-
     const birth_year = parseInt(req.query.birth_year); 
 
-    // if(birth_year === 1980)
-    // {
-    //     console.log(Object.keys(req.query).length); 
-    //     return; 
-    // }
-    
-
-    function success(handle_res)
+    if(birth_year === 1980)
     {
-        res.status(200).json({type: true, result: handle_res});
+        console.log(Object.keys(req.query).length); 
+        return; 
     }
 
     // name_parse(req.query.name, (handle_res) =>
