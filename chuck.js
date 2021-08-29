@@ -2,6 +2,7 @@ const https = require('https');
 const chuck = 'https://api.chucknorris.io/jokes/random'; 
 const wanted_value = 'value';
 const chuck_type = 'chuck-norris-joke';
+const cutoff_year = 2000; 
 
 // gets a function and acts upon the chuck norris quote
 function get_chuck_qoute(screen_print, callback)
@@ -18,5 +19,16 @@ function get_chuck_qoute(screen_print, callback)
   });
 }
 
+function check_validity(name, birth_year)
+{
+    if(birth_year <= cutoff_year)
+    {
+      return true; 
+    }
+    
+    return false; 
+}
+
 module.exports.response = get_chuck_qoute; 
 module.exports.type = chuck_type; 
+module.exports.check_validity = check_validity; 

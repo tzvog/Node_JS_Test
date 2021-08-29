@@ -10,7 +10,6 @@ const name_parse = require('./nameParse.js');
 const responses = require('./response'); 
 
 // const variables 
-const cutoff_year = 2000; 
 const types = [chuck, kanye, name_parse]; 
 
 // local varriables
@@ -18,8 +17,6 @@ var total_request_counter = {};
 var distribution_keys = {}; 
 
 app.get('/api/surprise' ,(req, res) => {
-
-    
 
     // checks if we the right amount of parameters and correct ones
     if ( typeof (req.query.birth_year) === 'undefined' || 
@@ -32,6 +29,7 @@ app.get('/api/surprise' ,(req, res) => {
 
     // converts the number to and int
     const birth_year = parseInt(req.query.birth_year); 
+    const name = req.query.name; 
 
     // checks if the birthyear is an actual number
     if(isNaN(birth_year))
@@ -40,9 +38,17 @@ app.get('/api/surprise' ,(req, res) => {
         return;  
     }
 
-    // chuck.response(res, success);
+    valid_responses = []; 
+
+    if(chuck.check_validity(name, birth_year))
+    {
+        console.log("chuckyyyy"); 
+    }
+
+    chuck.response(res,  responses.success);
+
     // name_parse.response(res, req.query.name, success);
-    kanye.response(res, responses.success);
+    // kanye.response(res, responses.success);
 
     // if(birth_year <= cutoff_year)
     // {

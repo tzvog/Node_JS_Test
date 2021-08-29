@@ -2,7 +2,7 @@ const A_ascii_value_as_one = 'A'.charCodeAt(0) - 1;
 const name_parse_type = 'name-sum';
 
 // gets a function and acts upon the chuck norris quote
-function parse_name(screen_print, name,callback)
+function parse_name(screen_print, name, callback)
 {
 
   // creates a base for the sum 
