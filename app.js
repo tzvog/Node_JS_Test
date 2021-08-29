@@ -11,7 +11,6 @@ const responses = require('./response');
 
 // const variables 
 const cutoff_year = 2000; 
-
 const repspone_type = {
     TYPE1: 'chuck-norris-joke',
     TYPE2: 'kanye-quote',
@@ -19,14 +18,14 @@ const repspone_type = {
 };
 
 // local varriables
-var request = {"requests": 0, "distribution": {}};
-
+var total_request_counter; 
+var distribution = []; 
 
 app.get('/api/surprise' ,(req, res) => {
 
-    function success(handle_res)
+    function success(type ,handle_res)
     {
-        res.status(200).json({type: repspone_type.TYPE1, result: handle_res});
+        res.status(200).json({type: type, result: handle_res});
     }
 
     // checks if we the right amount of parameters and correct ones
@@ -48,28 +47,44 @@ app.get('/api/surprise' ,(req, res) => {
         return;  
     }
 
-    if(birth_year <= cutoff_year)
-    {
-        chuck(success); 
-        return; 
-    }
-    else
-    {
-        if(req.query.name[0] != 'A' && req.query.name[0] != 'Z')
-        {
-            kanye(success);
-            return;  
-        }
-    }
+    chuck.response(success);
+    // name_parse.response(req.query.name, success);
+    // kanye.response(success);
 
-    if(req.query.name[0] != 'Q')
-    {
-        name_parse(req.query.name, success);
-        return; 
-    }
+    // if(birth_year <= cutoff_year)
+    // {
+    //     chuck.response(success); 
+    //     return; 
+    // }
+    // else
+    // {
+    //     if(req.query.name[0] != 'A' && req.query.name[0] != 'Z')
+    //     {
+    //         kanye.response(success);
+    //         return;  
+    //     }
+    // }
+
+    // if(req.query.name[0] != 'Q')
+    // {
+    //     name_parse(req.query.name, success);
+    //     return; 
+    // }
 
 
-    responses.fail(res); 
+    // responses.fail(res); 
 });
 
+function init()
+{
+    total_request_counter = 0; 
+    distribution.push({"type": chuck.type, "count": 0}); 
+    distribution.push({"type": kanye.type, "count": 0}); 
+    distribution.push({"type": name_parse.type, "count": 0}); 
+}
+
+init();
+
 app.listen(3000, console.log("Listening on port"));
+
+

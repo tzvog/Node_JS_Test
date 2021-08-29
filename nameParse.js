@@ -1,4 +1,5 @@
- const A_ascii_value_as_one = 'A'.charCodeAt(0) - 1; 
+const A_ascii_value_as_one = 'A'.charCodeAt(0) - 1; 
+const name_parse_type = 'name-sum';
 
 // gets a function and acts upon the chuck norris quote
 function parse_name(name,callback)
@@ -24,7 +25,8 @@ function parse_name(name,callback)
   }
 
   // activates the call back function on the sum
-  callback(sum);
+  callback(name_parse_type, sum);
 }
 
-module.exports = parse_name; 
+module.exports.response = parse_name;
+module.exports.type = name_parse_type;  
