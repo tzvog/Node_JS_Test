@@ -2,7 +2,7 @@ const A_ascii_value_as_one = 'A'.charCodeAt(0) - 1;
 const name_parse_type = 'name-sum';
 
 // gets a function and acts upon the chuck norris quote
-function parse_name(name,callback)
+function parse_name(screen_print, name,callback)
 {
 
   // creates a base for the sum 
@@ -25,7 +25,7 @@ function parse_name(name,callback)
   }
 
   // activates the call back function on the sum
-  callback(name_parse_type, sum);
+  callback(screen_print, name_parse_type, sum);
 }
 
 module.exports.response = parse_name;

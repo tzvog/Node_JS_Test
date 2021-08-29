@@ -19,10 +19,7 @@ var distribution_keys = {};
 
 app.get('/api/surprise' ,(req, res) => {
 
-    function success(type ,handle_res)
-    {
-        res.status(200).json({type: type, result: handle_res});
-    }
+    
 
     // checks if we the right amount of parameters and correct ones
     if ( typeof (req.query.birth_year) === 'undefined' || 
@@ -43,9 +40,9 @@ app.get('/api/surprise' ,(req, res) => {
         return;  
     }
 
-    // chuck.response(success);
-    // name_parse.response(req.query.name, success);
-    // kanye.response(success);
+    // chuck.response(res, success);
+    // name_parse.response(res, req.query.name, success);
+    kanye.response(res, responses.success);
 
     // if(birth_year <= cutoff_year)
     // {

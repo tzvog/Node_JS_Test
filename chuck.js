@@ -4,13 +4,13 @@ const wanted_value = 'value';
 const chuck_type = 'chuck-norris-joke';
 
 // gets a function and acts upon the chuck norris quote
-function get_chuck_qoute(callback)
+function get_chuck_qoute(screen_print, callback)
 {
   https.get(chuck, (res) => {
     res.on('data', (d) => {
         // parses the data into a json and puts the values into our function 
       json_parsed_object = JSON.parse(d); 
-      callback(chuck_type, json_parsed_object[wanted_value]);
+      callback(screen_print, chuck_type, json_parsed_object[wanted_value]);
     });
   
   }).on('error', (e) => {
