@@ -23,7 +23,7 @@ app.get('/api/surprise' ,(req, res) => {
         typeof (req.query.name) === 'undefined' || 
         Object.keys(req.query).length != 2)
     {
-        responses.fail(res); 
+        responses.bad_parameters(res); 
         return; 
     }
 
@@ -34,44 +34,41 @@ app.get('/api/surprise' ,(req, res) => {
     // checks if the birthyear is an actual number
     if(isNaN(birth_year))
     {
-        responses.fail(res);
+        responses.birth_year_is_NAN(res);
         return;  
     }
 
     valid_responses = []; 
 
-    if(chuck.check_validity(name, birth_year))
+    // add valid ones to list
+    types.forEach((item, index, array) => {
+       
+        // if the response is valid add it to the list
+        if(item.check_validity(name, birth_year))
+        {
+            valid_responses.push(item); 
+        }
+    })
+
+    // checks that we have one valid responce 
+    if(valid_responses.length == 0)
     {
-        console.log("chuckyyyy"); 
+        responses.no_valid_response; 
+        return; 
+    }
+    // checks if we have many valid repsonses and if so choose a random one
+    else
+    {
+        final_repsonse = valid_responses[Math.floor((Math.random()*valid_responses.length))]; 
     }
 
-    chuck.response(res,  responses.success);
+    // udates the counter 
+    total_request_counter["requests"] += 1; 
+    item_location = distribution_keys[final_repsonse.type]; 
+    total_request_counter["distribution"][item_location]["count"] += 1;
 
-    // name_parse.response(res, req.query.name, success);
-    // kanye.response(res, responses.success);
-
-    // if(birth_year <= cutoff_year)
-    // {
-    //     chuck.response(success); 
-    //     return; 
-    // }
-    // else
-    // {
-    //     if(req.query.name[0] != 'A' && req.query.name[0] != 'Z')
-    //     {
-    //         kanye.response(success);
-    //         return;  
-    //     }
-    // }
-
-    // if(req.query.name[0] != 'Q')
-    // {
-    //     name_parse(req.query.name, success);
-    //     return; 
-    // }
-
-
-    // responses.fail(res); 
+    // sends a final response 
+    final_repsonse.response(res,  responses.success);
 });
 
 // returns the given stats 
