@@ -11,15 +11,10 @@ const responses = require('./response');
 
 // const variables 
 const cutoff_year = 2000; 
-const repspone_type = {
-    TYPE1: 'chuck-norris-joke',
-    TYPE2: 'kanye-quote',
-    TYPE3: 'name-sum'
-};
 
 // local varriables
-var total_request_counter; 
-var distribution = []; 
+var total_request_counter = {}; 
+var distribution_keys = {}; 
 
 app.get('/api/surprise' ,(req, res) => {
 
@@ -77,10 +72,15 @@ app.get('/api/surprise' ,(req, res) => {
 
 function init()
 {
-    total_request_counter = 0; 
-    distribution.push({"type": chuck.type, "count": 0}); 
-    distribution.push({"type": kanye.type, "count": 0}); 
-    distribution.push({"type": name_parse.type, "count": 0}); 
+    total_request_counter["requests"] = 0; 
+    total_request_counter["distribution"] = []; 
+
+    types = [chuck.type, kanye.type, name_parse.type]; 
+    
+    types.forEach((item, index, array) => {
+        total_request_counter["distribution"].push({"type": item, "count": 0}); 
+        distribution_keys[item] = index;
+    })
 }
 
 init();
