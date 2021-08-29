@@ -65,8 +65,19 @@ app.get('/api/surprise' ,(req, res) => {
     // udates the counter 
     total_request_counter["requests"] += 1; 
     item_location = distribution_keys[final_repsonse.type]; 
-    total_request_counter["distribution"][item_location]["count"] += 1;
 
+    // checks if we have seen this item before and if not adds it to the dictionary
+    // otherwise upadtes the counter
+    if(typeof(item_location) === 'undefined')
+    {
+       total_request_counter["distribution"].push({"type": final_repsonse.type, "count": 1});
+       distribution_keys[final_repsonse.type] = (total_request_counter["distribution"].length - 1);
+    }
+    else
+    {
+        total_request_counter["distribution"][item_location]["count"] += 1;
+    }
+    
     // sends a final response 
     final_repsonse.response(res,  responses.success);
 });
@@ -74,8 +85,8 @@ app.get('/api/surprise' ,(req, res) => {
 // returns the given stats 
 app.get('/api/stats' ,(req, res) => {
 
-    res.status(200).json(total_request_counter); 
-});
+    responses.stats_response(res, total_request_counter); 
+})
 
 // this function sets off initial uses for the code 
 function init()
@@ -83,12 +94,6 @@ function init()
     // sets the keys to default values 
     total_request_counter["requests"] = 0; 
     total_request_counter["distribution"] = []; 
-   
-    // for each type create a link in the dictionary and where the key is in the list 
-    types.forEach((item, index, array) => {
-        total_request_counter["distribution"].push({"type": item.type, "count": 0}); 
-        distribution_keys[item.type] = index;
-    })
 }
 
 // calls the init function

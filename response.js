@@ -23,7 +23,13 @@ function success(screen_print, type ,handle_res)
     screen_print.status(200).json({type: type, result: handle_res});
 }
 
+function stats_response(res, total_request_counter)
+{
+    res.status(200).json(total_request_counter); 
+}
+
 module.exports.bad_parameters = bad_parameters;
 module.exports.birth_year_is_NAN =  birth_year_is_NAN;
 module.exports.no_valid_response = no_valid_response; 
 module.exports.success = success; 
+module.exports.stats_response = stats_response; 
