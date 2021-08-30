@@ -10,7 +10,7 @@ function get_chuck_qoute(screen_print, callback)
   https.get(chuck, (res) => {
     res.on('data', (d) => {
         // parses the data into a json and puts the values into our function 
-      json_parsed_object = JSON.parse(d); 
+      let json_parsed_object = JSON.parse(d); 
       callback(screen_print, chuck_type, json_parsed_object[wanted_value]);
     });
   
@@ -21,12 +21,7 @@ function get_chuck_qoute(screen_print, callback)
 
 function check_validity(name, birth_year)
 {
-    if(birth_year <= cutoff_year)
-    {
-      return true; 
-    }
-    
-    return false; 
+    return (birth_year <= cutoff_year); 
 }
 
 module.exports.response = get_chuck_qoute; 

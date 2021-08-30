@@ -38,7 +38,7 @@ app.get('/api/surprise' ,(req, res) => {
         return;  
     }
 
-    valid_responses = []; 
+    let valid_responses = []; 
 
     // add valid ones to list
     types.forEach((item, index, array) => {
@@ -56,11 +56,10 @@ app.get('/api/surprise' ,(req, res) => {
         responses.no_valid_response; 
         return; 
     }
-    // checks if we have many valid repsonses and if so choose a random one
-    else
-    {
-        final_repsonse = valid_responses[Math.floor((Math.random()*valid_responses.length))]; 
-    }
+
+    // we have a valid response 
+    let final_repsonse = valid_responses[Math.floor((Math.random()*valid_responses.length))]; 
+ 
 
     // udates the counter 
     total_request_counter["requests"] += 1; 

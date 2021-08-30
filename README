@@ -4,15 +4,16 @@ Application Activation
 Make Sure all given files sit within the same directory (supriseResponses should sit within it own folder)
 and should look of the following 
 
-- app.js
+  app.js
   responses.js 
   me.jpeg
+  -node_modules
   -supriseResponses
 		chuck.js
 		kanye.js
 		userName.js`
 
-all dependencies have been downloaded and run go to the correct path and run the command 
+after all dependencies have been downloaded go to the path containing app.js and run the command 
 “node app.js” in the terminal. If everything runs smoothly a message should be printed to the 
 console “listening on port” and from this point onwards the application will be listening 
 for requests on port 3000.
@@ -20,10 +21,12 @@ open your browser and feel free to make a request.
 
 ============
 Dependencies 
-===========
+============
+
 This application uses the express library which can be seen here:
 https://www.npmjs.com/package/express
 and to install it on your computer use can use the command “npm install express” in the terminal 
+it might not be needed since it is inclueded in the node modules file  
 
 =============
 File Description
@@ -33,7 +36,8 @@ Response.js – this file holds all the appropriate requests responses.
 supriseResponses - a directory to hold responses for the suprise responses request
 Kanye.js – this file holds all the data and functions needed to create a response for the Kanye request.
 chuck.js – this file holds all the data and functions needed to create a response for the Chuck Norris request.
-userNameSum.js – this file holds all the data and functions needed to create a response for the user name sum request. 
+userNameSum.js – this file holds all the data and functions needed to create a response for the user name sum request.
+me.jpg - an image file that will describe me 
 
 ===================
 Implementation details
@@ -58,6 +62,7 @@ When this is invoked we get the data that we have collected from the requests If
 	GET /api/stats			{"requests":0,"distribution":[]}
 	GET api/surprise?name=Ryan%20Gosling&birth_year=1980  {"type":"name-sum","result":141}
 	GET /api/stats	    {"requests":1,"distribution":[{"type":"name-sum","count":1}]}
+as we can see kanye does not appear yet
 3. 
 Get /api/aboutme
 When this is invoked you will learn a little be about me	
@@ -70,7 +75,7 @@ assumptions:
 Suprise api - 
 an Empty name is invalid. 
 birth year must be a number.
-when checking a name is there it is not case sensitive. 
+when checking a name it is not case sensitive. 
 
 user name sum request -  
-And that a valid name will only contain letters from the Latin alphabet and spaces. 
+a valid name will only contain letters from the Latin alphabet and spaces. 

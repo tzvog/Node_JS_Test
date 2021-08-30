@@ -23,7 +23,7 @@ function check_validity(name, birth_year)
     }
 
   // creates a base for the sum 
-  sum = 0; 
+  let sum = 0; 
 
   // goes through all the letters and prepares for possible call of function 
   for(let letter of name)
