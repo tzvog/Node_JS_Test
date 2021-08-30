@@ -3,9 +3,9 @@ const express = require('express');
 const app = express(); 
 
 // local files
-const kanye = require('./kanye.js');
-const chuck = require('./chuck.js');
-const name_parse = require('./userNameSum.js'); 
+const kanye = require('./supriseResponses/kanye.js');
+const chuck = require('./supriseResponses/chuck.js');
+const name_parse = require('./supriseResponses/userNameSum.js'); 
 const responses = require('./response'); 
 
 // const variables 

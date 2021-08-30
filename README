@@ -1,9 +1,11 @@
 ==================
 Application Activation
 ==================
-Make Sure all given files sit within the same directory all dependencies have been downloaded and run the command “node app.js” in the terminal. 
-If everything runs smoothly a message should be printed to the console “listening on port” and
-from this point onwards the application will be listening for requests on port 3000
+Make Sure all given files sit within the same directory (supriseResponses should sit within it own folder)
+all dependencies have been downloaded and run go to the correct path and run the command 
+“node app.js” in the terminal. If everything runs smoothly a message should be printed to the 
+console “listening on port” and from this point onwards the application will be listening 
+for requests on port 3000.
 
 ============
 Dependencies 
