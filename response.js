@@ -1,3 +1,5 @@
+join = require('path'); 
+
 const bad_paramets_message = "bad parameters type";
 const bad_parameter_values_message = "bad parameter values";
 const no_valid_response_message = "no valid response";
@@ -30,7 +32,8 @@ function stats_response(res, total_request_counter)
 
 function about_me_repsponse(res)
 {
-    res.status(200).sendFile('C:\\Users\\t-dog\\Desktop\\Node JS\\me.jpg');
+    img_path = join.resolve() + '\\me.jpg'; 
+    res.status(200).sendFile(img_path);
 }
 
 module.exports.bad_parameters_type = bad_parameters_type;

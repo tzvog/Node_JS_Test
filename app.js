@@ -1,6 +1,5 @@
 // imported libraries 
-const express = require('express');
-const app = express(); 
+const express = require('express'); 
 
 // local files
 const kanye = require('./supriseResponses/kanye.js');
@@ -9,6 +8,7 @@ const name_parse = require('./supriseResponses/userNameSum.js');
 const responses = require('./response'); 
 
 // const variables 
+const app = express();
 const types = [chuck, kanye, name_parse]; 
 
 // local varriables
@@ -42,7 +42,7 @@ app.get('/api/surprise' ,(req, res) => {
 
     // add valid ones to list
     types.forEach((item, index, array) => {
-       
+        
         // if the response is valid add it to the list
         if(item.check_validity(name, birth_year))
         {
