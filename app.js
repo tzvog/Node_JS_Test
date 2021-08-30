@@ -13,7 +13,7 @@ const responses = require('./response');
 const types = [chuck, kanye, name_parse]; 
 
 // local varriables
-var total_request_counter = {}; 
+var total_request_counter = {"requests": 0, "distribution": []}; 
 var distribution_keys = {}; 
 
 app.get('/api/surprise' ,(req, res) => {
@@ -87,17 +87,6 @@ app.get('/api/stats' ,(req, res) => {
 
     responses.stats_response(res, total_request_counter); 
 })
-
-// this function sets off initial uses for the code 
-function init()
-{
-    // sets the keys to default values 
-    total_request_counter["requests"] = 0; 
-    total_request_counter["distribution"] = []; 
-}
-
-// calls the init function
-init();
 
 // starts listening on the port
 app.listen(3000, console.log("Listening on port"));
