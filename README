@@ -1,0 +1,57 @@
+==================
+Application Activation
+==================
+Make Sure all given files sit within the same directory all dependencies have been downloaded and run the command “node app.js” in the terminal. 
+If everything runs smoothly a message should be printed to the console “listening on port” and
+from this point onwards the application will be listening for requests on port 3000
+
+============
+Dependencies 
+===========
+This application uses the express library which can be seen here:
+https://www.npmjs.com/package/express
+and to install it on your computer use can use the command “npm install express” in the terminal 
+
+=============
+File Description
+=============
+App.js – this is the main file running the program where we are listening to port 3000 and gives an appropriate response with the given request.
+Response.js – this file holds all the appropriate requests responses.
+Kanye.js – this file holds all the data and functions needed to create a response for the Kanye request.
+chuck.js – this file holds all the data and functions needed to create a response for the Chuck Norris request.
+userNameSum.js – this file holds all the data and functions needed to create a response for the user name sum request. 
+
+===================
+Implementation details
+===================
+Each one of the response files must contain three items in their exports 
+1.	Check validity function which receives parameters checks if they are valid for
+ this type of request and prepares for the calling of the response function 
+2.	Response function this function receives a callback function and response item and 
+invokes the function using the given parameters for that item
+3.	A type items this is the identifier for the given response type 
+ Using this model, we can make adding more responses a lot easier in the app.js file.
+In a the app.js file we must import the possible responses that we want from the wanted files
+and add it to the types array making it very simple to add new responses.
+In the app.js we are listening for two routes on port 300 
+1.	
+GET /api/suprise  
+When this get is invoked we check if we have valid parameters and if so check what responses are relevant, 
+chooses a random one updates our counters and responds to the request.   
+2.	
+GET /api/stats 
+When this is invoked we get the data that we have collected from the requests If a certain request was not invoked we will not see it. EX:
+	GET /api/stats			{"requests":0,"distribution":[]}
+	GET api/surprise?name=Ryan%20Gosling&birth_year=1980  {"type":"name-sum","result":141}
+	GET /api/stats	    {"requests":1,"distribution":[{"type":"name-sum","count":1}]}
+	
+	
+we see that name-sum request has been added to the list but not the kanye
+since it was not invoked yet
+
+assumptions: 
+in the Kanye request:
+We assume for this request that the name is not empty. 
+user name sum request:
+We assume for this request that the name is not empty. 
+And that a valid name will only contain letters from the Latin alphabet and spaces. 

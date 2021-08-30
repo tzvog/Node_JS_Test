@@ -5,7 +5,7 @@ const name_parse_type = 'name-sum';
 var recent_sum = 0; 
 
 // gets a function and acts upon the chuck norris quote
-function parse_name(screen_print, callback)
+function get_name_sum(screen_print, callback)
 {
   // activates the call back function on the sum
   callback(screen_print, name_parse_type, recent_sum);
@@ -50,6 +50,6 @@ function check_validity(name, birth_year)
   return true; 
 }
 
-module.exports.response = parse_name;
+module.exports.response = get_name_sum;
 module.exports.type = name_parse_type;
 module.exports.check_validity = check_validity;  

@@ -1,12 +1,11 @@
 // imported libraries 
 const express = require('express');
 const app = express(); 
-const Enum = require('enum');
 
 // local files
 const kanye = require('./kanye.js');
 const chuck = require('./chuck.js');
-const name_parse = require('./nameParse.js'); 
+const name_parse = require('./userNameSum.js'); 
 const responses = require('./response'); 
 
 // const variables 
@@ -27,7 +26,7 @@ app.get('/api/surprise' ,(req, res) => {
         return; 
     }
 
-    // converts the number to and int
+    // converts the number to and int and gets the name from the user
     const birth_year = parseInt(req.query.birth_year); 
     const name = req.query.name; 
 
