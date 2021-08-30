@@ -10,7 +10,7 @@ function get_chuck_qoute(screen_print, callback)
   https.get(chuck, (res) => {
     res.on('data', (d) => {
         // parses the data into a json and puts the values into our function 
-      let json_parsed_object = JSON.parse(d); 
+      const json_parsed_object = JSON.parse(d); 
       callback(screen_print, chuck_type, json_parsed_object[wanted_value]);
     });
   

@@ -2,7 +2,7 @@ const A_ascii_value_as_one = 'A'.charCodeAt(0) - 1;
 const A_ascii_value = 65; 
 const Z_ascii_value = 90; 
 const name_parse_type = 'name-sum';
-var recent_sum = 0; 
+let recent_sum = 0; 
 
 // gets a function and acts upon the chuck norris quote
 function get_name_sum(screen_print, callback)

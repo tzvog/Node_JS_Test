@@ -12,8 +12,8 @@ const app = express();
 const types = [chuck, kanye, name_parse]; 
 
 // local varriables
-var total_request_counter = {"requests": 0, "distribution": []}; 
-var distribution_keys = {}; 
+const total_request_counter = {"requests": 0, "distribution": []}; 
+const distribution_keys = {}; 
 
 // suprise request
 app.get('/api/surprise' ,(req, res) => {
@@ -38,7 +38,7 @@ app.get('/api/surprise' ,(req, res) => {
         return;  
     }
 
-    let valid_responses = []; 
+    const valid_responses = []; 
 
     // add valid ones to list
     types.forEach((item, index, array) => {
@@ -58,7 +58,7 @@ app.get('/api/surprise' ,(req, res) => {
     }
 
     // we have a valid response 
-    let final_repsonse = valid_responses[Math.floor((Math.random()*valid_responses.length))]; 
+    const final_repsonse = valid_responses[Math.floor((Math.random()*valid_responses.length))]; 
  
 
     // udates the counter 
@@ -95,5 +95,3 @@ app.get('/api/aboutme' ,(req, res) => {
 
 // starts listening on the port
 app.listen(3000, console.log("Listening on port"));
-
-

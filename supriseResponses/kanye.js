@@ -10,7 +10,7 @@ function get_kanye_qoute(screen_print, callback)
   https.get(kanye, (res) => {
     res.on('data', (d) => {
       // parses the data into a json and puts the values into our function 
-      let json_parsed_object = JSON.parse(d); 
+      const json_parsed_object = JSON.parse(d); 
       callback(screen_print, kanye_type, json_parsed_object[wanted_value]);
     });
   
