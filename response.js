@@ -28,8 +28,14 @@ function stats_response(res, total_request_counter)
     res.status(200).json(total_request_counter); 
 }
 
+function about_me_repsponse(res)
+{
+    res.status(200).sendFile('C:\\Users\\t-dog\\Desktop\\Node JS\\me.jpg');
+}
+
 module.exports.bad_parameters_type = bad_parameters_type;
 module.exports.bad_parameters_values =  bad_parameters_values;
 module.exports.no_valid_response = no_valid_response; 
 module.exports.success = success; 
 module.exports.stats_response = stats_response; 
+module.exports.about_me_repsponse = about_me_repsponse; 

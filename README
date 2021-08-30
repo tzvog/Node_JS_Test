@@ -6,6 +6,7 @@ all dependencies have been downloaded and run go to the correct path and run the
 “node app.js” in the terminal. If everything runs smoothly a message should be printed to the 
 console “listening on port” and from this point onwards the application will be listening 
 for requests on port 3000.
+open your browser and feel free to make a request.
 
 ============
 Dependencies 
@@ -36,7 +37,7 @@ invokes the function using the given parameters for that item
  Using this model, we can make adding more responses a lot easier in the app.js file.
 In a the app.js file we must import the possible responses that we want from the wanted files
 and add it to the types array making it very simple to add new responses.
-In the app.js we are listening for two routes on port 300 
+In the app.js we are listening for three routes on port 300 
 1.	
 GET /api/suprise  
 When this get is invoked we check if we have valid parameters and if so check what responses are relevant, 
@@ -47,7 +48,9 @@ When this is invoked we get the data that we have collected from the requests If
 	GET /api/stats			{"requests":0,"distribution":[]}
 	GET api/surprise?name=Ryan%20Gosling&birth_year=1980  {"type":"name-sum","result":141}
 	GET /api/stats	    {"requests":1,"distribution":[{"type":"name-sum","count":1}]}
-	
+3. 
+Get /api/aboutme
+When this is invoked you will learn a little be about me	
 	
 we see that name-sum request has been added to the list but not the kanye
 since it was not invoked yet
@@ -57,6 +60,7 @@ assumptions:
 Suprise api - 
 an Empty name is invalid. 
 birth year must be a number.
+when checking a name is there it is not case sensitive. 
 
 user name sum request -  
 And that a valid name will only contain letters from the Latin alphabet and spaces. 

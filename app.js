@@ -88,6 +88,12 @@ app.get('/api/stats' ,(req, res) => {
     responses.stats_response(res, total_request_counter); 
 })
 
+// a little about me
+app.get('/api/aboutme' ,(req, res) => {
+
+    responses.about_me_repsponse(res);  
+})
+
 // starts listening on the port
 app.listen(3000, console.log("Listening on port"));
 
