@@ -1,21 +1,21 @@
-const bad_paramets_message = "bad parameters try again";
-const bad_birth_year_message = "birth year is Nan";
+const bad_paramets_message = "bad parameters type";
+const bad_parameter_values_message = "bad parameter values";
 const no_valid_response_message = "no valid response";
 
 // response functions 
-function bad_parameters(res)
+function bad_parameters_type(res)
 {
     res.status(400).send(bad_paramets_message);
 }
 
-function birth_year_is_NAN(res)
+function bad_parameters_values(res)
 {
-    res.status(400).send(bad_birth_year_message);
+    res.status(400).send(bad_parameter_values_message);
 }
 
 function no_valid_response(res)
 {
-    res.status(400).send(bad_birth_year_message);
+    res.status(400).send(bad_parameter_values_message);
 }
 
 function success(screen_print, type ,handle_res)
@@ -28,8 +28,8 @@ function stats_response(res, total_request_counter)
     res.status(200).json(total_request_counter); 
 }
 
-module.exports.bad_parameters = bad_parameters;
-module.exports.birth_year_is_NAN =  birth_year_is_NAN;
+module.exports.bad_parameters_type = bad_parameters_type;
+module.exports.bad_parameters_values =  bad_parameters_values;
 module.exports.no_valid_response = no_valid_response; 
 module.exports.success = success; 
 module.exports.stats_response = stats_response; 

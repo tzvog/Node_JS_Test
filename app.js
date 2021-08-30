@@ -15,6 +15,7 @@ const types = [chuck, kanye, name_parse];
 var total_request_counter = {"requests": 0, "distribution": []}; 
 var distribution_keys = {}; 
 
+// suprise request
 app.get('/api/surprise' ,(req, res) => {
 
     // checks if we the right amount of parameters and correct ones
@@ -22,7 +23,7 @@ app.get('/api/surprise' ,(req, res) => {
         typeof (req.query.name) === 'undefined' || 
         Object.keys(req.query).length != 2)
     {
-        responses.bad_parameters(res); 
+        responses.bad_parameters_type(res); 
         return; 
     }
 
@@ -31,9 +32,9 @@ app.get('/api/surprise' ,(req, res) => {
     const name = req.query.name; 
 
     // checks if the birthyear is an actual number
-    if(isNaN(birth_year))
+    if(isNaN(birth_year) || (name.length == 0))
     {
-        responses.birth_year_is_NAN(res);
+        responses.bad_parameters_values(res);
         return;  
     }
 

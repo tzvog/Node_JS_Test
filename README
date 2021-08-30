@@ -19,6 +19,7 @@ File Description
 =============
 App.js – this is the main file running the program where we are listening to port 3000 and gives an appropriate response with the given request.
 Response.js – this file holds all the appropriate requests responses.
+supriseResponses - a directory to hold responses for the suprise responses request
 Kanye.js – this file holds all the data and functions needed to create a response for the Kanye request.
 chuck.js – this file holds all the data and functions needed to create a response for the Chuck Norris request.
 userNameSum.js – this file holds all the data and functions needed to create a response for the user name sum request. 
@@ -52,8 +53,10 @@ we see that name-sum request has been added to the list but not the kanye
 since it was not invoked yet
 
 assumptions: 
-in the Kanye request:
-We assume for this request that the name is not empty. 
-user name sum request:
-We assume for this request that the name is not empty. 
+
+Suprise api - 
+an Empty name is invalid. 
+birth year must be a number.
+
+user name sum request -  
 And that a valid name will only contain letters from the Latin alphabet and spaces. 
